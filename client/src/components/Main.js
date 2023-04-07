@@ -11,16 +11,16 @@ const Main = (props) => {
         {
             name: "Charlesworth Pancakes",
             position: "Waterboy",
-            gameOne: false,
-            gameTwo: false,
-            gameThree: true
+            gameOne: "Undecided",
+            gameTwo: "Undecided",
+            gameThree: "Undecided"
         },
         {
             name: "Bell Ruth",
             position: "Cuddler",
-            gameOne: false,
-            gameTwo: false,
-            gameThree: true
+            gameOne:"Undecided" ,
+            gameTwo: "Undecided",
+            gameThree: "Undecided"
         }
     ])
 

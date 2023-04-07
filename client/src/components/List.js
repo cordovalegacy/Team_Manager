@@ -69,7 +69,7 @@ const List = (props) => {
                         playerList.map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} />
+                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
                             </tr>
                         ))
                         : null
@@ -79,7 +79,7 @@ const List = (props) => {
                         playerList.map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} />
+                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
                             </tr>
                         ))
                         : null
@@ -89,7 +89,7 @@ const List = (props) => {
                         playerList.map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} />
+                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
                             </tr>
                         ))
                         : null
