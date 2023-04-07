@@ -4,28 +4,31 @@ import Create from "./Create"
 import { useState } from 'react'
 
 const Main = (props) => {
-    
+
     const { Routes, Route } = props
 
     const [playerList, setPlayerList] = useState([
         {
             name: "Charlesworth Pancakes",
             position: "Waterboy",
-            gameOne: null,
-            gameTwo: null,
-            gameThree: null
+            gameOne: false,
+            gameTwo: false,
+            gameThree: true
         },
         {
             name: "Bell Ruth",
             position: "Cuddler",
-            gameOne: null,
-            gameTwo: null,
-            gameThree: null
+            gameOne: false,
+            gameTwo: false,
+            gameThree: true
         }
     ])
 
     const players = true
     const status = true
+    const gameOne = true
+    const gameTwo = true
+    const gameThree = true
 
 
     return (
@@ -33,8 +36,9 @@ const Main = (props) => {
             <Routes>
                 <Route path="/" element={<List playerList={playerList} setPlayerList={setPlayerList} players={players} />} />
                 <Route path="/create" element={<Create playerList={playerList} setPlayerList={setPlayerList} players={players} />} />
-                <Route path="/status/1" element={<List playerList={playerList} setPlayerList={setPlayerList} status={status} />} />
-                <Route path="/status/:id" element={<List playerList={playerList} setPlayerList={setPlayerList} status={status} />} />
+                <Route path="/status/1" element={<List playerList={playerList} setPlayerList={setPlayerList} status={status} gameOne={gameOne} />} />
+                <Route path="/status/2" element={<List playerList={playerList} setPlayerList={setPlayerList} status={status} gameTwo={gameTwo} />} />
+                <Route path="/status/3" element={<List playerList={playerList} setPlayerList={setPlayerList} status={status} gameThree={gameThree} />} />
             </Routes>
         </main>
     )
