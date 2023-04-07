@@ -9,6 +9,7 @@ const Main = (props) => {
 
     const [playerList, setPlayerList] = useState([
         {
+            _id: Math.floor(Math.random() * 10000),
             name: "Charlesworth Pancakes",
             position: "Waterboy",
             gameOne: "Undecided",
@@ -16,6 +17,15 @@ const Main = (props) => {
             gameThree: "Undecided"
         },
         {
+            _id: Math.floor(Math.random() * 10000),
+            name: "Charlesworth Pancakes",
+            position: "Waterboy",
+            gameOne: "Undecided",
+            gameTwo: "Undecided",
+            gameThree: "Undecided"
+        },
+        {
+            _id: Math.floor(Math.random() * 10000),
             name: "Bell Ruth",
             position: "Cuddler",
             gameOne:"Undecided" ,
