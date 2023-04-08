@@ -1,12 +1,14 @@
 import { useEffect } from "react"
+import axios from 'axios'
 
 const ButtonSet = (props) => {
 
     const { playerList, setPlayerList, onePlayer, gameOne, gameTwo, gameThree } = props
 
-    const buttonHandler = (e) => {
-
-    }
+    // const buttonHandler = (thing) => {
+    //     axios
+    //         .put(`http://localhost:8000/api/sports/`)
+    // }
 
     return (
         <>

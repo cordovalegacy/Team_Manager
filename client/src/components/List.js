@@ -19,6 +19,19 @@ const List = (props) => {
             })
     }, [])
 
+    const deleteHandler = (onePlayerIDFromMap) => {
+        axios
+            .delete(`http://localhost:8000/api/sports/${onePlayerIDFromMap}`)
+            .then((res) => {
+                console.log("Delete Data: ", res.data)
+                setPlayerList(playerList.filter((allOtherPlayers) => allOtherPlayers._id !== onePlayerIDFromMap))
+            })
+            .catch((err) => {
+                console.log("Something went wrong: ", err)
+            })
+    }
+
+
     return (
         <table className="w-full table-auto border border-gray-300 divide-y h-auto divide-gray-300 overflow-y-scroll scroll-smooth scrollbar-none">
             {
@@ -74,7 +87,7 @@ const List = (props) => {
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.position}</td>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">
-                                    <button className="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-sm shadow-md focus:outline-none border border-neutral-900">Delete</button>
+                                    <button onClick={() => deleteHandler(onePlayer._id)} className="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-sm shadow-md focus:outline-none border border-neutral-900">Delete</button>
                                 </td>
                             </tr>
                         ))

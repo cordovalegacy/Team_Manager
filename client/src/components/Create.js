@@ -1,13 +1,14 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 const Create = (props) => {
 
     const [playerName, setPlayerName] = useState("")
     const [playerPosition, setPlayerPosition] = useState("")
+    const navigate = useNavigate()
 
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState([])
 
     const { playerList, setPlayerList, players } = props
     
@@ -32,9 +33,11 @@ const Create = (props) => {
                     gameTwo: "Undecided",
                     gameThree: "Undecided"
                 }])
+                navigate('/')
             })
             .catch((err) => {
-                console.log("Something went wrong: ", err)
+                console.log("Something went wrong: ", [err.response.data.errors.name])
+                setErrors([err.response.data.errors.name])
             })
     }
 
@@ -59,8 +62,13 @@ const Create = (props) => {
                     type="text"
                     placeholder="Enter player name"
                     onChange={(e) => setPlayerName(e.target.value)}
-                    required
                 />
+                {
+                playerName.length == 0 ? <p className="text-red-600 text-left p-2">{errors[0]?.message}</p> : null
+                }
+                {
+                playerName.length < 3 && playerName.length !== 0 ? <p className="text-red-600 text-left p-2">{errors[0]?.message}</p> : null
+                }
             </div>
             <div className="mb-6 px-20">
                 <label className="block text-stone-900 font-bold mb-2 text-left" htmlFor="playerPosition">Player Position</label>
