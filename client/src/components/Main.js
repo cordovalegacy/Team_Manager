@@ -18,7 +18,7 @@ const Main = (props) => {
         },
         {
             _id: Math.floor(Math.random() * 10000),
-            name: "Charlesworth Pancakes",
+            name: "Chuck Waffleton",
             position: "Waterboy",
             gameOne: "Undecided",
             gameTwo: "Undecided",
@@ -27,6 +27,14 @@ const Main = (props) => {
         {
             _id: Math.floor(Math.random() * 10000),
             name: "Bell Ruth",
+            position: "Cuddler",
+            gameOne:"Undecided" ,
+            gameTwo: "Undecided",
+            gameThree: "Undecided"
+        },
+        {
+            _id: Math.floor(Math.random() * 10000),
+            name: "Heidi McGee",
             position: "Cuddler",
             gameOne:"Undecided" ,
             gameTwo: "Undecided",

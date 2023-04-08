@@ -53,7 +53,9 @@ const List = (props) => {
             <tbody className="bg-white divide-y divide-gray-300">
                 {
                     players ?
-                        playerList.map((onePlayer, idx) => (
+                        playerList
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.position}</td>
@@ -66,7 +68,9 @@ const List = (props) => {
                 }
                 {
                     status && gameOne ?
-                        playerList.map((onePlayer, idx) => (
+                        playerList
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
                                 <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
@@ -76,7 +80,9 @@ const List = (props) => {
                 }
                 {
                     status && gameTwo ?
-                        playerList.map((onePlayer, idx) => (
+                        playerList
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
                                 <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
@@ -86,7 +92,9 @@ const List = (props) => {
                 }
                 {
                     status && gameThree ?
-                        playerList.map((onePlayer, idx) => (
+                        playerList
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
                                 <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
