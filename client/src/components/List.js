@@ -20,15 +20,17 @@ const List = (props) => {
     }, [])
 
     const deleteHandler = (onePlayerIDFromMap) => {
-        axios
-            .delete(`http://localhost:8000/api/sports/${onePlayerIDFromMap}`)
-            .then((res) => {
-                console.log("Delete Data: ", res.data)
-                setPlayerList(playerList.filter((allOtherPlayers) => allOtherPlayers._id !== onePlayerIDFromMap))
-            })
-            .catch((err) => {
-                console.log("Something went wrong: ", err)
-            })
+        if (window.confirm(`Are you sure you want to delete ${onePlayerIDFromMap.name} from the roster?`)) { //<= built in popup that spawns a confirm button that the user must click in order to run axios delete request
+            axios
+                .delete(`http://localhost:8000/api/sports/${onePlayerIDFromMap._id}`)
+                .then((res) => {
+                    console.log("Delete Data: ", res.data)
+                    setPlayerList(playerList.filter((allOtherPlayers) => allOtherPlayers._id !== onePlayerIDFromMap._id))
+                })
+                .catch((err) => {
+                    console.log("Something went wrong: ", err)
+                })
+        }
     }
 
 
@@ -81,52 +83,52 @@ const List = (props) => {
                 {
                     players ?
                         playerList
-                        .sort((a, b) => a.name.localeCompare(b.name))
-                        .map((onePlayer, idx) => (
-                            <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
-                                <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.position}</td>
-                                <td className="p-2 whitespace-nowrap border-l border-gray-300">
-                                    <button onClick={() => deleteHandler(onePlayer._id)} className="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-sm shadow-md focus:outline-none border border-neutral-900">Delete</button>
-                                </td>
-                            </tr>
-                        ))
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map((onePlayer, idx) => (
+                                <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
+                                    <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
+                                    <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.position}</td>
+                                    <td className="p-2 whitespace-nowrap border-l border-gray-300">
+                                        <button onClick={() => deleteHandler(onePlayer)} className="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-sm shadow-md focus:outline-none border border-neutral-900">Delete</button>
+                                    </td>
+                                </tr>
+                            ))
                         : null
                 }
                 {
                     status && gameOne ?
                         playerList
-                        .sort((a, b) => a.name.localeCompare(b.name))
-                        .map((onePlayer, idx) => (
-                            <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
-                                <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameOne={gameOne}/>
-                            </tr>
-                        ))
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map((onePlayer, idx) => (
+                                <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
+                                    <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
+                                    <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameOne={gameOne} />
+                                </tr>
+                            ))
                         : null
                 }
                 {
                     status && gameTwo ?
                         playerList
-                        .sort((a, b) => a.name.localeCompare(b.name))
-                        .map((onePlayer, idx) => (
-                            <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
-                                <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameTwo={gameTwo}/>
-                            </tr>
-                        ))
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map((onePlayer, idx) => (
+                                <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
+                                    <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
+                                    <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameTwo={gameTwo} />
+                                </tr>
+                            ))
                         : null
                 }
                 {
                     status && gameThree ?
                         playerList
-                        .sort((a, b) => a.name.localeCompare(b.name))
-                        .map((onePlayer, idx) => (
-                            <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
-                                <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameThree={gameThree}/>
-                            </tr>
-                        ))
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map((onePlayer, idx) => (
+                                <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
+                                    <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
+                                    <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameThree={gameThree} />
+                                </tr>
+                            ))
                         : null
                 }
             </tbody>

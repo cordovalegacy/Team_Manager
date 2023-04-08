@@ -8,7 +8,10 @@ const Create = (props) => {
     const [playerPosition, setPlayerPosition] = useState("")
     const navigate = useNavigate()
 
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState({
+        lengthValidation: "Must be at least 3 characters",
+        blankValidation: "Player name is required"
+    })
 
     const { playerList, setPlayerList, players } = props
     
@@ -37,7 +40,7 @@ const Create = (props) => {
             })
             .catch((err) => {
                 console.log("Something went wrong: ", [err.response.data.errors.name])
-                setErrors([err.response.data.errors.name])
+                // setErrors([err.response.data.errors.name]) not needed due to disabled button
             })
     }
 
@@ -64,10 +67,10 @@ const Create = (props) => {
                     onChange={(e) => setPlayerName(e.target.value)}
                 />
                 {
-                playerName.length == 0 ? <p className="text-red-600 text-left p-2">{errors[0]?.message}</p> : null
+                playerName.length == 0 ? <p className="text-red-600 text-left p-2">{errors.blankValidation}</p> : null
                 }
                 {
-                playerName.length < 3 && playerName.length !== 0 ? <p className="text-red-600 text-left p-2">{errors[0]?.message}</p> : null
+                playerName.length < 3 && playerName.length !== 0 ? <p className="text-red-600 text-left p-2">{errors.lengthValidation}</p> : null
                 }
             </div>
             <div className="mb-6 px-20">
@@ -80,7 +83,12 @@ const Create = (props) => {
                     onChange={(e) => setPlayerPosition(e.target.value)}
                 />
             </div>
-            <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Add Player</button>
+                {
+                playerName.length < 3 ? 
+                <button className="bg-gray-100 text-red-200 opacity-80 py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" disabled>Add Player</button> : 
+                <button className="bg-gray-200 hover:bg-gray-300 text-green-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Add Player</button>
+                }
+            
         </form>
     )
 
