@@ -1,14 +1,41 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import axios from 'axios'
 
 const Create = (props) => {
 
-    const[validated, setValidated] = useState(false)
+    const [playerName, setPlayerName] = useState("")
+    const [playerPosition, setPlayerPosition] = useState("")
 
-    const {playerList, setPlayerList, players} = props
+    const [errors, setErrors] = useState({})
+
+    const { playerList, setPlayerList, players } = props
+    
+    const formData = {
+        name:playerName,
+        position:playerPosition,
+        gameOne: "Undecided",
+        gameTwo: "Undecided",
+        gameThree: "Undecided"
+    }
 
     const submitHandler = (e) => {
         e.preventDefault()
+        axios
+            .post('http://localhost:8000/api/sports', formData)
+            .then((res) => {
+                console.log("Successful Post: ", res.data)
+                setPlayerList([...playerList, {
+                    name: playerName,
+                    position: playerPosition,
+                    gameOne: "Undecided",
+                    gameTwo: "Undecided",
+                    gameThree: "Undecided"
+                }])
+            })
+            .catch((err) => {
+                console.log("Something went wrong: ", err)
+            })
     }
 
     return (
@@ -28,10 +55,10 @@ const Create = (props) => {
                 <label className="block text-stone-900 font-bold mb-2 text-left" htmlFor="playerName">Player Name</label>
                 <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="playerName"
                     name="playerName"
                     type="text"
                     placeholder="Enter player name"
+                    onChange={(e) => setPlayerName(e.target.value)}
                     required
                 />
             </div>
@@ -39,14 +66,13 @@ const Create = (props) => {
                 <label className="block text-stone-900 font-bold mb-2 text-left" htmlFor="playerPosition">Player Position</label>
                 <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="playerPosition"
                     name="playerPosition"
                     type="text"
                     placeholder="Enter player position"
-                    required
+                    onChange={(e) => setPlayerPosition(e.target.value)}
                 />
             </div>
-                <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Add Player</button>
+            <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Add Player</button>
         </form>
     )
 

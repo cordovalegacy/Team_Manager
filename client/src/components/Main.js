@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import List from "./List"
 import Create from "./Create"
 import { useState } from 'react'
@@ -7,40 +6,7 @@ const Main = (props) => {
 
     const { Routes, Route } = props
 
-    const [playerList, setPlayerList] = useState([
-        {
-            _id: Math.floor(Math.random() * 10000),
-            name: "Charlesworth Pancakes",
-            position: "Waterboy",
-            gameOne: "Undecided",
-            gameTwo: "Undecided",
-            gameThree: "Undecided"
-        },
-        {
-            _id: Math.floor(Math.random() * 10000),
-            name: "Chuck Waffleton",
-            position: "Waterboy",
-            gameOne: "Undecided",
-            gameTwo: "Undecided",
-            gameThree: "Undecided"
-        },
-        {
-            _id: Math.floor(Math.random() * 10000),
-            name: "Bell Ruth",
-            position: "Cuddler",
-            gameOne:"Undecided" ,
-            gameTwo: "Undecided",
-            gameThree: "Undecided"
-        },
-        {
-            _id: Math.floor(Math.random() * 10000),
-            name: "Heidi McGee",
-            position: "Cuddler",
-            gameOne:"Undecided" ,
-            gameTwo: "Undecided",
-            gameThree: "Undecided"
-        }
-    ])
+    const [playerList, setPlayerList] = useState([])
 
     const players = true
     const status = true

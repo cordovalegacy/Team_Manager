@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom"
 import ButtonSet from "./ButtonSet"
+import axios from "axios"
+import { useEffect } from "react"
 
 const List = (props) => {
 
     const { playerList, setPlayerList, players, status, gameOne, gameTwo, gameThree } = props
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8000/api/sports')
+            .then((res) => {
+                console.log("Get All: ", res.data)
+                setPlayerList(res.data)
+            })
+            .catch((err) => {
+                console.log("Something went wrong: ", err)
+            })
+    }, [])
 
     return (
         <table className="w-full table-auto border border-gray-300 divide-y h-auto divide-gray-300 overflow-y-scroll scroll-smooth scrollbar-none">
@@ -13,7 +27,7 @@ const List = (props) => {
                         <div className="flex items-center gap-8 text-xl font-bold text-cyan-900 underline">
                             <Link to={'/'}>List</Link>
                             <p>|</p>
-                            <Link to={'/create'}>Add Player</Link>
+                            <Link id="active-link" to={'/create'}>Add Player</Link>
                         </div>
                     </caption> :
                     null
@@ -73,7 +87,7 @@ const List = (props) => {
                         .map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
+                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameOne={gameOne}/>
                             </tr>
                         ))
                         : null
@@ -85,7 +99,7 @@ const List = (props) => {
                         .map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
+                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameTwo={gameTwo}/>
                             </tr>
                         ))
                         : null
@@ -97,7 +111,7 @@ const List = (props) => {
                         .map((onePlayer, idx) => (
                             <tr className="text-xs font-medium text-gray-500 uppercase tracking-wider" key={idx}>
                                 <td className="p-2 whitespace-nowrap border-l border-gray-300">{onePlayer.name}</td>
-                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer}/>
+                                <ButtonSet playerList={playerList} setPlayerList={setPlayerList} onePlayer={onePlayer} gameThree={gameThree}/>
                             </tr>
                         ))
                         : null
